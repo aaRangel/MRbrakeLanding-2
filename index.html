@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr.Brake - Mecánica Automotriz Profesional</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #fff;
+      padding: 1.2em 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      background: linear-gradient(45deg, #e63946, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2em;
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 0.5em 0;
+      border-bottom: 2px solid transparent;
+    }
+    
+    nav a:hover {
+      color: #e63946;
+      border-bottom: 2px solid #e63946;
+    }
+    
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 8em 2em;
+      animation: fadeIn 1s ease-in;
+    }
+    
+    .hero h1 {
+      font-size: 3.5em;
+      margin-bottom: 0.3em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      animation: slideDown 0.8s ease-out;
+    }
+    
+    .hero p {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      animation: slideUp 0.8s ease-out;
+    }
+    
+    .btn {
+      background: linear-gradient(135deg, #e63946 0%, #d62839 100%);
+      color: #fff;
+      padding: 1em 2.5em;
+      text-decoration: none;
+      border-radius: 50px;
+      display: inline-block;
+      margin-top: 1em;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(230, 57, 70, 0.6);
+    }
+    
+    section {
+      padding: 4em 5%;
+      animation: fadeIn 0.8s ease-in;
+    }
+    
+    section h2 {
+      font-size: 2.5em;
+      margin-bottom: 1em;
+      text-align: center;
+      color: #1a1a1a;
+      position: relative;
+      padding-bottom: 0.5em;
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #e63946, #ff6b6b);
+      border-radius: 2px;
+    }
+    
+    .servicios {
+      background: #f8f9fa;
+    }
+    
+    .servicios ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2em;
+      list-style: none;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .servicios li {
+      background: white;
+      padding: 2em;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .servicios li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(230, 57, 70, 0.2);
+      color: #e63946;
+    }
+    
+    .promociones {
+      background: linear-gradient(135deg, #e63946 0%, #d62839 100%);
+      color: white;
+    }
+    
+    .promociones h2 {
+      color: white;
+    }
+    
+    .promociones h2::after {
+      background: white;
+    }
+    
+    .promo-card {
+      background: rgba(255,255,255,0.95);
+      color: #333;
+      padding: 2em;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .promo-card h3 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+      color: #e63946;
+    }
+    
+    .promo-card p {
+      font-size: 1.2em;
+    }
+    
+    .tienda {
+      background: #fff;
+    }
+    
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2em;
+      max-width: 1200px;
+      margin: 2em auto;
+    }
+    
+    .producto {
+      background: #f8f9fa;
+      padding: 2em;
+      border-radius: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid #e0e0e0;
+    }
+    
+    .producto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-color: #e63946;
+    }
+    
+    .producto h4 {
+      font-size: 1.5em;
+      margin-bottom: 0.5em;
+      color: #1a1a1a;
+    }
+    
+    .producto p {
+      font-size: 1.8em;
+      color: #e63946;
+      font-weight: bold;
+    }
+    
+    .agendar {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    form {
+      display: grid;
+      gap: 1.2em;
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 2em;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    form input, form select {
+      padding: 1em;
+      font-size: 1em;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    form input:focus, form select:focus {
+      outline: none;
+      border-color: #e63946;
+      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+    }
+    
+    form button {
+      padding: 1em;
+      font-size: 1.1em;
+      background: linear-gradient(135deg, #e63946 0%, #d62839 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+    }
+    
+    .testimonios {
+      background: #fff;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    blockquote {
+      font-style: italic;
+      margin: 2em 0;
+      padding: 1.5em;
+      background: #f8f9fa;
+      border-left: 5px solid #e63946;
+      border-radius: 8px;
+      font-size: 1.1em;
+    }
+    
+    .contacto {
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+    }
+    
+    .contacto h2 {
+      color: white;
+    }
+    
+    .contacto h2::after {
+      background: #e63946;
+    }
+    
+    .contacto p {
+      font-size: 1.2em;
+      margin: 1em 0;
+    }
+    
+    .contacto iframe {
+      margin-top: 2em;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    
+    footer {
+      background: #0a0a0a;
+      color: #fff;
+      text-align: center;
+      padding: 2em 1em;
+    }
+    
+    footer p {
+      margin-bottom: 1em;
+    }
+    
+    .redes {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin-top: 1em;
+    }
+    
+    .redes a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.8em 1.5em;
+      background: #e63946;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    
+    .redes a:hover {
+      background: #d62839;
+      transform: scale(1.05);
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 0.5em;
+      }
+      
+      .hero h1 {
+        font-size: 2.5em;
+      }
+      
+      .hero p {
+        font-size: 1.2em;
+      }
+      
+      section {
+        padding: 3em 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Mr.Brake</div>
+    <nav>
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#promociones">Promociones</a></li>
+        <li><a href="#tienda">Tienda Online</a></li>
+        <li><a href="#agendar">Agendar Cita</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Tu auto en manos expertas</h1>
+    <p>Especialistas en lubricantes, frenos y mecánica ligera</p>
+    <a href="#agendar" class="btn">Agendar tu cita ahora</a>
+  </section>
+
+  <section id="servicios" class="servicios">
+    <h2>Nuestros Servicios</h2>
+    <ul>
+      <li>🛢️ Cambio de aceite</li>
+      <li>🔧 Cambio de frenos</li>
+      <li>🚗 Cambio de neumáticos</li>
+      <li>⚙️ Balanceo y alineación</li>
+      <li>💧 Cambio de líquidos y filtros</li>
+      <li>🔩 Mecánica ligera</li>
+    </ul>
+  </section>
+
+  <section id="promociones" class="promociones">
+    <h2>Promociones Especiales</h2>
+    <div class="promo-card">
+      <h3>🎉 Cambio de aceite + revisión gratis</h3>
+      <p>Solo por tiempo limitado. ¡Agenda ahora y ahorra!</p>
+    </div>
+  </section>
+
+  <section id="tienda" class="tienda">
+    <h2>Tienda Online</h2>
+    <div class="productos">
+      <div class="producto">
+        <h4>Lubricante 10W-40</h4>
+        <p>$12.990</p>
+      </div>
+      <div class="producto">
+        <h4>Pastillas de freno</h4>
+        <p>$19.990</p>
+      </div>
+      <div class="producto">
+        <h4>Filtro de aceite</h4>
+        <p>$8.990</p>
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <a href="#" class="btn">Ir a la tienda completa</a>
+    </div>
+  </section>
+
+  <section id="agendar" class="agendar">
+    <h2>Agendar Cita</h2>
+    <form onsubmit="event.preventDefault(); alert('¡Cita agendada con éxito! Te contactaremos pronto.');">
+      <input type="text" placeholder="Nombre completo" required />
+      <input type="text" placeholder="Marca y modelo del vehículo" required />
+      <select required>
+        <option value="">Selecciona el servicio requerido</option>
+        <option>Cambio de aceite</option>
+        <option>Cambio de frenos</option>
+        <option>Balanceo y alineación</option>
+        <option>Mecánica ligera</option>
+      </select>
+      <input type="date" required />
+      <input type="tel" placeholder="Teléfono" required />
+      <input type="email" placeholder="Correo electrónico" required />
+      <button type="submit">Confirmar cita</button>
+    </form>
+  </section>
+
+  <section class="testimonios">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <blockquote>"Excelente atención y rapidez. El equipo es muy profesional y dejaron mi auto impecable. Volveré sin duda." – Juan P.</blockquote>
+    <blockquote>"Me encantó la promoción de cambio de aceite. Muy profesionales y el precio fue justo. Totalmente recomendado." – Carla M.</blockquote>
+  </section>
+
+  <section id="contacto" class="contacto">
+    <h2>Contáctanos</h2>
+    <p>📍 Av. Principal 123, Independencia, Santiago</p>
+    <p>📞 +56 9 1234 5678</p>
+    <p>📧 contacto@mrbrake.cl</p>
+    <iframe src="https://maps.google.com/maps?q=Independencia%20Santiago&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="400" frameborder="0"></iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mr.Brake. Todos los derechos reservados.</p>
+    <div class="redes">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+    </div>
+  </footer>
+</body>
+</html>
